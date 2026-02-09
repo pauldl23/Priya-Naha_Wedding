@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 60" fill="none">
+  <path d="M0 30C50 30 70 10 100 10C130 10 150 50 180 50C210 50 230 10 260 10C290 10 310 30 400 30" stroke="#6b705c" stroke-width="1.5" opacity="0.6"/>
+  <path d="M100 10C105 15 110 5 115 10" stroke="#6b705c" stroke-width="1"/>
+  <circle cx="100" cy="10" r="2" fill="#6b705c"/>
+  <path d="M180 50C185 55 190 45 195 50" stroke="#6b705c" stroke-width="1"/>
+  <circle cx="180" cy="50" r="2" fill="#6b705c"/>
+  <path d="M260 10C265 15 270 5 275 10" stroke="#6b705c" stroke-width="1"/>
+  <circle cx="260" cy="10" r="2" fill="#6b705c"/>
+  <!-- Leaves -->
+  <path d="M45 28C40 20 50 18 55 25C50 32 40 30 45 28Z" fill="#6b705c" opacity="0.4"/>
+  <path d="M140 35C135 27 145 25 150 32C145 39 135 37 140 35Z" fill="#6b705c" opacity="0.4"/>
+  <path d="M225 32C220 24 230 22 235 29C230 36 220 34 225 32Z" fill="#6b705c" opacity="0.4"/>
+  <path d="M315 20C310 12 320 10 325 17C320 24 310 22 315 20Z" fill="#6b705c" opacity="0.4"/>
+</svg>

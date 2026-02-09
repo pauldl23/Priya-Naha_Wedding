@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <path d="M20 80C40 60 60 40 80 20" stroke="#6b705c" stroke-width="1.5"/>
+  <!-- Leaf pairs -->
+  <path d="M40 60C30 55 35 45 45 55C35 65 40 60 40 60Z" fill="#6b705c" opacity="0.6"/>
+  <path d="M40 60C50 65 45 75 35 65C45 55 40 60 40 60Z" fill="#6b705c" opacity="0.6"/>
+  
+  <path d="M60 40C50 35 55 25 65 35C55 45 60 40 60 40Z" fill="#6b705c" opacity="0.6"/>
+  <path d="M60 40C70 45 65 55 55 45C65 35 60 40 60 40Z" fill="#6b705c" opacity="0.6"/>
+  
+  <circle cx="35" cy="55" r="3" fill="#6b705c" opacity="0.4"/>
+  <circle cx="55" cy="35" r="3" fill="#6b705c" opacity="0.4"/>
+</svg>

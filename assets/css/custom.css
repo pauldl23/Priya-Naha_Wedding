@@ -1,0 +1,188 @@
+/* Custom RSVP Modal Styles */
+#rsvp-modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 100000 !important;
+    /* Sit on top of everything */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Black w/ opacity */
+    align-items: center;
+    justify-content: center;
+}
+
+#rsvp-modal.show {
+    display: flex !important;
+    /* Activate flex to center */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation: animatetop 0.4s;
+}
+
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+.modal-icon {
+    font-size: 50px;
+    color: #a4c9cf;
+    /* Matching theme blue-ish tone */
+    margin-bottom: 20px;
+}
+
+.modal-message h2 {
+    color: #444;
+    font-family: 'Great Vibes', cursive;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.modal-message p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.close-modal-btn {
+    background-color: #a4c9cf;
+    color: white;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.close-modal-btn:hover {
+    background-color: #8bbdc5;
+}
+
+.close-x {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.close-x:hover,
+.close-x:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Travel & Stay Sub-Navigation Alignment */
+.travel-sub-nav {
+    max-width: 1140px;
+    margin: 30px auto;
+    padding: 0 15px;
+    position: static !important;
+    /* Ensure it doesn't stick when scrolling */
+}
+
+.travel-sub-nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    background: #fff;
+    border-radius: 50px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 15px rgba(139, 115, 85, 0.1);
+}
+
+.travel-sub-nav ul li {
+    list-style: none;
+}
+
+.travel-sub-nav ul li a {
+    display: inline-block;
+    padding: 10px 25px;
+    color: #5a4a3a;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.travel-sub-nav ul li a:hover {
+    background: var(--color-linen);
+    color: var(--color-terracotta);
+}
+
+/* Ensure map card matches */
+.map-card {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 1200px) {
+
+    .travel-sub-nav,
+    .map-card {
+        max-width: 960px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+
+    .travel-sub-nav,
+    .map-card {
+        max-width: 720px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+    .travel-sub-nav,
+    .map-card {
+        max-width: 100%;
+    }
+
+    .travel-sub-nav ul {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .travel-sub-nav ul li a {
+        display: block;
+        text-align: center;
+    }
+}
