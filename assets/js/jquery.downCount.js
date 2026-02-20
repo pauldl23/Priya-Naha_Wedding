@@ -65,7 +65,7 @@
             var _second = 1000,
                 _minute = _second * 60,
                 _hour = _minute * 60,
-                _day = _hour * 4;
+                _day = _hour * 24;
 
             // calculate dates
             var days = Math.floor(difference / _day),

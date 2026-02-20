@@ -45,9 +45,34 @@
 :root {
   --color-linen: #F6F1EA;
   --color-stone: #E4DCCF;
-  --color-olive: #6F7F5A;
+  --color-olive: #4A5638;
+  /* Darkened for better contrast */
   --color-terracotta: #C26A4A;
   --color-warm-charcoal: #2F2F2C;
+}
+
+/* Global Casing Override */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.section_heading h2,
+.section_heading p,
+.btn1,
+.btn-submit,
+.btn-terracotta,
+.btn-registry-stripe,
+.back-home,
+.registry-cta-area a,
+.main-menu ul li a,
+.mobile-menu ul li a,
+.attire-block p,
+.event-card p,
+.travel-question span,
+.travel-item a {
+  text-transform: none !important;
 }
 
 /*-------- Global Variables End here --------*/
@@ -200,12 +225,14 @@ button:active {
 }
 
 ::-moz-selection {
-  background: #00c3ff;
+  background: var(--color-terracotta);
+  color: #fff;
   text-shadow: none;
 }
 
 ::selection {
-  background: #00c3ff;
+  background: var(--color-terracotta);
+  color: #fff;
   text-shadow: none;
 }
 
@@ -471,8 +498,16 @@ h4 {
 }
 
 .rsvp-hero h2:after,
-.faq-area .section_heading h2:after {
+.faq-area .section_heading h2:after,
+.no-icon-after h2:after {
   display: none !important;
+}
+
+.rsvp-hero p {
+  color: #333 !important;
+  /* Higher contrast */
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+  font-weight: 400 !important;
 }
 
 @media only screen and (max-width: 480px) {
@@ -892,6 +927,23 @@ h4 {
 
 .mr-b15 {
   margin-bottom: 15px;
+}
+
+.event-area {
+  background-color: transparent !important;
+  padding: 100px 0 !important;
+  margin-top: 0 !important;
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+
+.event-area.section2 {
+  margin-top: 0 !important;
+}
+
+.section2 .section_heading {
+  margin-bottom: 25px;
 }
 
 .mr-b20 {
@@ -1645,9 +1697,9 @@ h4 {
 header {
   display: block;
   position: absolute;
-  background: rgba(255, 255, 255, 0.5);
-  height: 120px;
-  line-height: 120px;
+  background: #fff !important;
+  height: 60px;
+  line-height: 60px;
   left: 0;
   right: 0;
   top: 0;
@@ -1715,8 +1767,8 @@ header.sticky {
   left: 0;
   right: 0;
   background: #fff;
-  height: 100px;
-  line-height: 100px;
+  height: 60px;
+  line-height: 60px;
   z-index: 9999999;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -1724,16 +1776,19 @@ header.sticky {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
+header#sticky {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
 @media only screen and (max-width: 480px) {
   header.sticky {
-    height: 80px;
-    line-height: 80px;
+    height: 60px;
+    line-height: 60px;
   }
 }
 
-header.sticky .main-menu nav ul li:last-child {
-  padding: 25px 0;
-}
+
 
 header.sticky .mobilemenu .mean-bar {
   top: 36px;
@@ -1743,6 +1798,10 @@ header.sticky .mobilemenu .mean-bar {
   header.sticky .mobilemenu .mean-bar {
     top: 26px;
   }
+}
+
+header .main-menu {
+  text-align: center;
 }
 
 header .main-menu nav ul li {
@@ -1772,17 +1831,12 @@ header .main-menu nav ul li a:hover {
 }
 
 header .main-menu nav ul li:first-child a {
-  padding-left: 0;
+  padding-left: 15px;
 }
 
-header .main-menu nav ul li:last-child {
-  float: right;
-  padding: 35px 0;
-}
 
-header .main-menu nav ul li:last-child a {
-  color: #fff;
-}
+
+
 
 @media only screen and (max-width: 992px) {
   header .main-menu nav ul li:last-child a {
@@ -1794,13 +1848,31 @@ header .main-menu nav ul li:last-child a {
 3. Slider area start here
 ....................................*/
 .slider-area .bx-wrapper {
-  margin: 0;
-  padding: 0;
+  margin: 0 !important;
+  padding: 0 !important;
   box-shadow: none;
   border: none;
   overflow: hidden;
+  overflow: hidden;
   vertical-align: middle;
 }
+
+.slider-area {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  top: 0 !important;
+}
+
+.event-area.section2 {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  top: 0 !important;
+}
+
+.event-area.section2 .event-tabs {
+  padding-top: 100px;
+}
+
 
 .response {
   color: #fff;
@@ -1939,6 +2011,13 @@ header .main-menu nav ul li:last-child a {
   height: 100vh;
 }
 
+.slider-area {
+  padding: 0 !important;
+  margin: 0 !important;
+  display: block;
+  overflow: hidden;
+}
+
 @media only screen and (max-width: 480px) {
   .slider-area .item {
     text-align: center !important;
@@ -2005,7 +2084,6 @@ header .main-menu nav ul li:last-child a {
 
 .slider-area .item .content h2 span {
   color: #b5a489;
-  font-style: italic;
   font-family: 'Playfair Display', serif;
 }
 
@@ -2166,7 +2244,6 @@ header .main-menu nav ul li:last-child a {
   display: block;
   margin: 10px 0 5px;
   font-family: 'Playfair Display', serif;
-  font-style: italic;
 }
 
 .persons-area .persons-con strong {
@@ -3715,7 +3792,7 @@ header .main-menu nav ul li:last-child a {
 footer {
   position: relative;
   display: block;
-  background: #f07677;
+  background: var(--color-olive);
   line-height: 120px;
   height: 120px;
 }
@@ -3753,6 +3830,37 @@ footer .copyright p {
 /*-------------------------------------
     23. Travel & Stay Redesign Styles
 ---------------------------------------*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Playfair Display', serif;
+  color: var(--color-warm-charcoal);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+section {
+  padding: 140px 0;
+  /* More generous spacing */
+}
+
+.section-title {
+  font-size: 48px;
+  margin-bottom: 60px;
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+
+p {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.8;
+  color: #555;
+  font-size: 16px;
+}
+
 .travel-stay-redesign {
   background-image: url('images/travel-stay-watercolor.png');
   background-size: cover;
@@ -3817,7 +3925,6 @@ footer .copyright p {
 .travel-hero .subline {
   color: var(--color-olive);
   font-size: 18px;
-  font-style: italic;
   opacity: 0.9;
 }
 
@@ -4222,10 +4329,13 @@ footer .copyright p {
 
 .selection-card span {
   font-weight: 500;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--color-warm-charcoal);
+  font-size: 18px;
+  /* Bigger choice text */
+  text-transform: none;
+  /* No CAPSLOCK */
+  letter-spacing: normal;
+  color: #1a1a1a;
+  /* Darker color */
 }
 
 .hidden-radio,
@@ -4245,13 +4355,16 @@ footer .copyright p {
 }
 
 .checkbox-card .title {
-  font-size: 14px;
+  font-size: 16px;
+  /* Bigger */
   font-weight: 600;
+  color: #1a1a1a;
 }
 
 .checkbox-card .date {
-  font-size: 12px;
-  opacity: 0.7;
+  font-size: 14px;
+  opacity: 0.8;
+  color: #333;
 }
 
 /* Highlight Box */
@@ -4270,29 +4383,35 @@ footer .copyright p {
   font-weight: 600;
   cursor: pointer;
   padding: 0;
-  font-size: 14px;
+  font-size: 16px;
+  /* Bigger */
   text-decoration: underline;
 }
 
 .btn-large {
   padding: 18px 40px;
-  font-size: 18px;
+  font-size: 20px;
+  /* Bigger */
   font-weight: 600;
   width: 100%;
   margin-top: 20px;
 }
 
 .rsvp-deadline {
-  font-style: italic;
-  font-size: 14px;
-  color: #999;
-  margin-bottom: 5px;
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--color-warm-charcoal);
+  margin-bottom: 20px;
 }
 
 .subtext {
-  font-size: 13px;
-  opacity: 0.7;
+  font-size: 14px;
+  opacity: 0.8;
+  color: #333;
   margin-top: 10px;
+  font-style: normal;
+  /* No italics */
 }
 
 /* Confirmation */
@@ -4310,6 +4429,109 @@ footer .copyright p {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/*-------------------------------------
+    25. Modern Registry Aesthetics
+---------------------------------------*/
+.registry-card-modern {
+  background: #fff;
+  border-radius: 15px;
+  padding: 80px 60px;
+  box-shadow: 0 20px 60px rgba(139, 115, 85, 0.08);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(228, 220, 207, 0.4);
+  text-align: center;
+}
+
+/* Sun-bleached Watercolor Wash Effect */
+.registry-card-modern::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 20%, rgba(246, 241, 234, 0.6) 0%, transparent 40%),
+    radial-gradient(circle at 70% 80%, rgba(228, 220, 207, 0.4) 0%, transparent 40%);
+  transform: rotate(-15deg);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.registry-header-area,
+.registry-content-block,
+.registry-cta-area,
+.registry-decorative-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.registry-title-main {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px !important;
+  color: var(--color-warm-charcoal);
+  margin-bottom: 40px;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+}
+
+.registry-text-primary {
+  font-size: 20px;
+  color: var(--color-warm-charcoal);
+  line-height: 1.8;
+  margin-bottom: 30px;
+  font-weight: 400;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.registry-text-secondary {
+  font-size: 17px;
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 50px;
+}
+
+.btn-registry-stripe {
+  display: inline-block;
+  padding: 18px 45px;
+  background: var(--color-terracotta);
+  color: #fff !important;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 30px rgba(194, 106, 74, 0.2);
+  text-decoration: none;
+}
+
+.btn-registry-stripe:hover {
+  background: var(--color-olive);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(74, 86, 56, 0.2);
+}
+
+.registry-decorative-footer {
+  margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+  .registry-card-modern {
+    padding: 60px 25px;
+  }
+
+  .registry-title-main {
+    font-size: 42px !important;
+  }
+
+  .registry-text-primary {
+    font-size: 18px;
   }
 }
 

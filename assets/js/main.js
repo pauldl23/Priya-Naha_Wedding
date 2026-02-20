@@ -10,9 +10,11 @@
 	/*----------------------------
 	 2. Mobile Menu Activation
 	-----------------------------*/
-	jQuery('.mobile-menu nav').meanmenu({
-		meanScreenWidth: "768",
-	});
+	if (jQuery('.mobile-menu nav').meanmenu) {
+		jQuery('.mobile-menu nav').meanmenu({
+			meanScreenWidth: "768",
+		});
+	}
 
 
 	/*--------------------------
@@ -27,8 +29,8 @@
 	});
 
 
-	//Single page scroll js for main menu
-	$(document).on('click', '.menu_scroll ul li a', function (e) {
+	//Single page scroll js for main menu and FAQ links
+	$(document).on('click', '.menu_scroll ul li a, .faq-link', function (e) {
 		var href = $(this).attr('href');
 
 		// Handle both "0" and "#0" formats
@@ -38,6 +40,9 @@
 		}
 
 		var target = $('[section-scroll=' + sectionId + ']');
+		if (!target.length && href.indexOf('#') === 0) {
+			target = $(href);
+		}
 
 		if (target.length) {
 			$('.menu_scroll ul li').removeClass('active');
@@ -80,154 +85,171 @@
 	/*----------------------------
 	4. wow js active
 	------------------------------ */
-	new WOW().init();
+	if (typeof WOW === 'function') {
+		new WOW().init();
+	}
 
 	/*----------------------------
 	5. owl active
 	------------------------------ */
 
 	//testimonial Slider
-	$(".testimonial").owlCarousel({
-		autoPlay: true,
-		slideSpeed: 2000,
-		pagination: false,
-		navigation: false,
-		items: 1,
-		/* transitionStyle : "fade", */    /* [This code for animation ] */
-		navigationText: ["<i class='fas fa-angle-left'></i>", "<i class='fas fa-angle-right'></i>"],
-		itemsDesktop: [1199, 1],
-		itemsDesktopSmall: [992, 1],
-		itemsTablet: [768, 1],
-		itemsMobile: [480, 1],
-	});
+	if ($.fn.owlCarousel) {
+		$(".testimonial").owlCarousel({
+			autoPlay: true,
+			slideSpeed: 2000,
+			pagination: false,
+			navigation: false,
+			items: 1,
+			/* transitionStyle : "fade", */    /* [This code for animation ] */
+			navigationText: ["<i class='fas fa-angle-left'></i>", "<i class='fas fa-angle-right'></i>"],
+			itemsDesktop: [1199, 1],
+			itemsDesktopSmall: [992, 1],
+			itemsTablet: [768, 1],
+			itemsMobile: [480, 1],
+		});
 
-	//Register Slider
-	$(".reg-slider").owlCarousel({
-		autoPlay: true,
-		slideSpeed: 2000,
-		pagination: true,
-		navigation: false,
-		items: 3,
-		/* transitionStyle : "fade", */    /* [This code for animation ] */
-		navigationText: ["<i class='fas fa-angle-left'></i>", "<i class='fas fa-angle-right'></i>"],
-		itemsDesktop: [1199, 3],
-		itemsDesktopSmall: [992, 3],
-		itemsTablet: [768, 2],
-		itemsMobile: [480, 1],
-	});
+		//Register Slider
+		$(".reg-slider").owlCarousel({
+			autoPlay: true,
+			slideSpeed: 2000,
+			pagination: true,
+			navigation: false,
+			items: 3,
+			/* transitionStyle : "fade", */    /* [This code for animation ] */
+			navigationText: ["<i class='fas fa-angle-left'></i>", "<i class='fas fa-angle-right'></i>"],
+			itemsDesktop: [1199, 3],
+			itemsDesktopSmall: [992, 3],
+			itemsTablet: [768, 2],
+			itemsMobile: [480, 1],
+		});
 
-	//Gallery Slider
-	$(".gallery-slider").owlCarousel({
-		autoPlay: true,
-		slideSpeed: 2000,
-		pagination: true,
-		navigation: false,
-		items: 4,
-		/* transitionStyle : "fade", */    /* [This code for animation ] */
-		navigationText: ["<i class='fas fa-angle-left'></i>", "<i class='fas fa-angle-right'></i>"],
-		itemsDesktop: [1199, 4],
-		itemsDesktopSmall: [992, 3],
-		itemsTablet: [768, 2],
-		itemsMobile: [480, 1],
-	});
+		//Gallery Slider
+		$(".gallery-slider").owlCarousel({
+			autoPlay: true,
+			slideSpeed: 2000,
+			pagination: true,
+			navigation: false,
+			items: 4,
+			/* transitionStyle : "fade", */    /* [This code for animation ] */
+			navigationText: ["<i class='fas fa-angle-left'></i>", "<i class='fas fa-angle-right'></i>"],
+			itemsDesktop: [1199, 4],
+			itemsDesktopSmall: [992, 3],
+			itemsTablet: [768, 2],
+			itemsMobile: [480, 1],
+		});
+	}
 
 	/*--------------------------
 	6. jarallax active
 	---------------------------- */
-	$('.jarallax').jarallax({
-		speed: 0.5
-	});
+	if ($.fn.jarallax) {
+		$('.jarallax').jarallax({
+			speed: 0.5
+		});
+	}
 
 	/*----------------------------
 	7. magnific Popup active
 	------------------------------ */
-	$('.gallery-slider').magnificPopup({
-		delegate: 'a',
-		type: 'image',
-		closeOnContentClick: false,
-		closeBtnInside: false,
-		mainClass: 'mfp-with-zoom mfp-img-mobile',
-		image: {
-			verticalFit: true,
-			titleSrc: function (item) {
-				return item.el.attr('title') + ' &middot; <a class="image-source-link" href="' + item.el.attr('data-source') + '" target="_blank">image source</a>';
+	if ($.fn.magnificPopup) {
+		$('.gallery-slider').magnificPopup({
+			delegate: 'a',
+			type: 'image',
+			closeOnContentClick: false,
+			closeBtnInside: false,
+			mainClass: 'mfp-with-zoom mfp-img-mobile',
+			image: {
+				verticalFit: true,
+				titleSrc: function (item) {
+					return item.el.attr('title') + ' &middot; <a class="image-source-link" href="' + item.el.attr('data-source') + '" target="_blank">image source</a>';
+				}
+			},
+			gallery: {
+				enabled: true
+			},
+			zoom: {
+				enabled: true,
+				duration: 300, // don't foget to change the duration also in CSS
+				opener: function (element) {
+					return element.find('img');
+				}
 			}
-		},
-		gallery: {
-			enabled: true
-		},
-		zoom: {
-			enabled: true,
-			duration: 300, // don't foget to change the duration also in CSS
-			opener: function (element) {
-				return element.find('img');
-			}
-		}
-	});
+		});
 
-	// Attire Gallery Popup - Using document-level delegation for maximum reliability
-	$(document).magnificPopup({
-		delegate: '.popup-image',
-		type: 'image',
-		gallery: {
-			enabled: true
-		},
-		mainClass: 'mfp-with-zoom mfp-img-mobile',
-		image: {
-			verticalFit: true,
-			titleSrc: function (item) {
-				return item.el.attr('title');
+		// Attire Gallery Popup - Using document-level delegation for maximum reliability
+		$(document).magnificPopup({
+			delegate: '.popup-image',
+			type: 'image',
+			gallery: {
+				enabled: true
+			},
+			mainClass: 'mfp-with-zoom mfp-img-mobile',
+			image: {
+				verticalFit: true,
+				titleSrc: function (item) {
+					return item.el.attr('title');
+				}
+			},
+			zoom: {
+				enabled: true,
+				duration: 300,
+				opener: function (element) {
+					return element.find('div:first-child'); // Zoom from the card image div
+				}
 			}
-		},
-		zoom: {
-			enabled: true,
-			duration: 300,
-			opener: function (element) {
-				return element.find('div:first-child'); // Zoom from the card image div
-			}
-		}
-	});
+		});
+	}
 
 	/*--------------------------
 	8. bxslider active
 	---------------------------- */
 	//Home slider     
 	/*
-	$('.slider_home').bxSlider({
-		mode: 'fade',
-		speed: 3000,
-		auto: true
-	});
+	if ($.fn.bxSlider) {
+		$('.slider_home').bxSlider({
+			mode: 'fade',
+			speed: 3000,
+			auto: true
+		});
+	}
 	*/
+
 	/*--------------------------
 	 9. counterdown
 	---------------------------- */
 	function e() {
-		var futureFormattedDate = '06/07/2026 12:00:00';
+		var futureFormattedDate = '06/07/2026 17:00:00';
 		return futureFormattedDate;
 	}
 
-	$('.counter-list').downCount({
-		date: e(),
-		offset: 16
-	});
+	if ($.fn.downCount) {
+		$('.counter-list').downCount({
+			date: e(),
+			offset: 2
+		});
+	}
 
 	/*--------------------------
 	10. masonry active
 	---------------------------- */
-	$('#blog').masonry({
-		itemSelector: '.bitem'
-	});
+	if ($.fn.masonry) {
+		$('#blog').masonry({
+			itemSelector: '.bitem'
+		});
+	}
 
 	/*--------------------------
 	11. scrollUp
 	---------------------------- */
-	$.scrollUp({
-		scrollText: '<i class="fas fa-angle-up"></i>',
-		easingType: 'linear',
-		scrollSpeed: 900,
-		animation: 'fade'
-	});
+	if ($.scrollUp) {
+		$.scrollUp({
+			scrollText: '<i class="fas fa-angle-up"></i>',
+			easingType: 'linear',
+			scrollSpeed: 900,
+			animation: 'fade'
+		});
+	}
 
 	// Contact Form Submition
 	function checkRequire(formId, targetResp) {
@@ -271,6 +293,7 @@
 		});
 		return check;
 	}
+
 	$(".submitForm").on("click", function () {
 		var _this = $(this);
 		var targetForm = _this.closest('form');
@@ -398,6 +421,43 @@
 	});
 
 	/*-------------------------------------
+		Event Tab Switching Logic
+	---------------------------------------*/
+	// Event day switching
+	$('.event-link').on('click', function (e) {
+		e.preventDefault();
+		const target = $(this).data('target');
+
+		// Toggle active link style
+		$('.event-link').css('color', '#666');
+		$(this).css('color', 'var(--color-terracotta)');
+
+		// Show target content
+		$('.event-day-content').hide();
+		$('#' + target).fadeIn(500);
+	});
+
+	// Attire section toggle (Subtle)
+	$('.attire-trigger').on('click', function () {
+		$('#attire-content').fadeToggle(500);
+	});
+	$('.event-tab-link').on('click', function (e) {
+		e.preventDefault();
+		const targetEvent = $(this).data('event');
+
+		// Update active tab link styling
+		$('.event-tab-link').removeClass('active').css('border-bottom', '2px solid transparent');
+		$(this).addClass('active').css('border-bottom', '2px solid #8b7355');
+
+		// Toggle panes
+		$('.event-detail-pane').hide();
+		$('#' + targetEvent + '-details').fadeIn(400);
+	});
+
+	// Initialize first tab border
+	$('.event-tab-link.active').css('border-bottom', '2px solid #8b7355');
+
+	/*-------------------------------------
 		24. Travel & Stay Redesign Interaction
 	---------------------------------------*/
 	// Tab Switching Logic
@@ -468,7 +528,7 @@
 		}
 
 		// Auto-scroll logic for binary/main choices
-		if ($card.hasClass('attendance-card') || $card.hasClass('transport-card') || $card.hasClass('diet-card')) {
+		if ($card.hasClass('attendance-card') || $card.hasClass('transport-card') || $card.hasClass('diet-card') || $card.hasClass('diet-friday-card') || $card.hasClass('diet-saturday-card')) {
 			const $nextSection = $card.closest('.rsvp-section').nextAll('.rsvp-section:visible').first();
 			if ($nextSection.length) {
 				setTimeout(() => {
@@ -498,20 +558,57 @@
 		}
 	});
 
-	// RSVP Form Submission
-	$('#rsvp-submit-btn').on('click', function () {
+	// RSVP Form Submission -- Delegated Event for Robustness
+	$(document).on('click', '#rsvp-submit-btn', function (e) {
+		e.preventDefault(); // Prevent default if it's a submit button
+		console.log('RSVP Submit Clicked');
+
 		const _this = $(this);
-		const targetForm = $('#rsvp-experience-form');
+		// Check if checking a form ID string or object
+		const formId = 'rsvp-experience-form';
+		const targetForm = $('#' + formId);
 		const errroTarget = targetForm.find('.response');
 
-		// Use project's checkRequire helper
-		var check = checkRequire(targetForm, errroTarget);
+		console.log('Target Form:', targetForm.length);
+		console.log('Error Target:', errroTarget.length);
 
-		// Extra check for attendance radio (since checkRequire might miss it)
-		if (check == 0 && !targetForm.find('input[name="attendance"]:checked').length) {
-			errroTarget.html('Please let us know if you can attend.');
+		// INLINE VALIDATION (More Robust)
+		var check = 0;
+		errroTarget.html(''); // Clear previous errors
+
+		// 1. Check Name
+		var nameInput = targetForm.find('input[name="guest_1_name"]');
+		if (nameInput.val().trim() === '') {
+			nameInput.addClass('error');
+			errroTarget.html('<span style="color:red">Please enter your name.</span>');
 			check = 1;
+		} else {
+			nameInput.removeClass('error');
 		}
+
+		// 2. Check Attendance (only if name is ok, or check both)
+		if (check === 0) {
+			if (!targetForm.find('input[name="attendance"]:checked').length) {
+				errroTarget.html('<span style="color:red">Please let us know if you can attend.</span>');
+				check = 1;
+			}
+		}
+
+		// 3. Check Email (if it exists and is required)
+		// Current form doesn't have email visible, but if it did:
+		var emailInput = targetForm.find('input[name="email"]');
+		if (emailInput.length && emailInput.hasClass('require') && emailInput.val().trim() !== '') {
+			var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+			if (!emailRegex.test(emailInput.val())) {
+				emailInput.addClass('error');
+				errroTarget.html('<span style="color:red">Please enter a valid email.</span>');
+				check = 1;
+			} else {
+				emailInput.removeClass('error');
+			}
+		}
+
+		console.log('Validation Check Result:', check);
 
 		if (check == 0) {
 			const originalBtnText = _this.text();
@@ -519,55 +616,100 @@
 			_this.prop('disabled', true);
 
 			// Gather all data
-			const events = [];
-			targetForm.find('input[name="events[]"]:checked').each(function () {
-				events.push($(this).val());
+			var selectedEvents = [];
+			targetForm.find('input[name="event_attendance"]:checked').each(function () {
+				selectedEvents.push($(this).val());
 			});
 
+			// Robust value retrieval
+			function getVal(name) {
+				var $el = targetForm.find('[name="' + name + '"]');
+				if ($el.length && ($el.is('select') || $el.attr('type') === 'text' || $el.attr('type') === 'email' || $el.is('textarea'))) {
+					return $el.val();
+				}
+				// Handle hidden/missing inputs gracefully
+				if (!$el.length) return '';
+
+				return targetForm.find('[name="' + name + '"]:checked').val();
+			}
+
+			// Gather all dietary restrictions
+			var selectedDiet = [];
+			targetForm.find('input[name="diet_details"]:checked').each(function () {
+				selectedDiet.push($(this).val());
+			});
+			var dietDetailsStr = selectedDiet.join(', ');
+			if ($('#diet_other').is(':checked') && getVal('diet_details_other')) {
+				dietDetailsStr += ' (Other: ' + getVal('diet_details_other') + ')';
+			}
+
 			const rsvpData = {
-				fullName: targetForm.find('input[name="guest_1_name"]').val(),
-				guest2: targetForm.find('input[name="guest_2_name"]').val(),
-				attendance: targetForm.find('input[name="attendance"]:checked').val(),
-				event: events.join(', '),
-				dietary: targetForm.find('input[name="diet"]:checked').val(),
-				dietDetails: targetForm.find('textarea[name="diet_details"]').val(),
-				transport: targetForm.find('input[name="transport"]:checked').val(),
-				hotel: targetForm.find('input[name="hotel_name"]').val(),
-				song: targetForm.find('input[name="song_request"]').val(),
-				email: targetForm.find('input[name="email"]').val(),
-				phone: targetForm.find('input[name="phone"]').val(),
-				notes: targetForm.find('textarea[name="notes"]').val()
+				fullName: getVal('guest_1_name'),
+				email: getVal('email'),
+				phone: getVal('phone'),
+				attendance: getVal('attendance'),
+				plus_one: getVal('plus_one'),
+				guest2: getVal('guest_2_name'),
+				hotel: getVal('hotel_name'),
+				shuttle: getVal('shuttle'),
+				transport: getVal('shuttle'), // Alias for user's script
+				song: getVal('song'),
+				notes: getVal('notes'),
+				fridayDinner: getVal('dietary_friday') === 'Other' ? ('Other: ' + getVal('dietary_friday_other')) : getVal('dietary_friday'),
+				saturdayDinner: getVal('dietary_saturday') === 'Other' ? ('Other: ' + getVal('diet_details_extra')) : getVal('dietary_saturday'),
+				plusOneFriday: getVal('plus_one_diet_friday') === 'Other' ? ('Other: ' + getVal('plus_one_diet_friday_other')) : getVal('plus_one_diet_friday'),
+				plusOneSaturday: getVal('plus_one_diet_saturday') === 'Other' ? ('Other: ' + getVal('plus_one_diet_saturday_other')) : getVal('plus_one_diet_saturday'),
+				dietDetails: dietDetailsStr,
+				events: selectedEvents.join(', ')
 			};
 
+			console.log('Sending Data:', rsvpData);
+
 			$.ajax({
-				url: 'https://script.google.com/macros/s/AKfycbyIXl0cUpIW1thOYklDTUaERHFeajr1ptgka4yqG_ekBoFx08TuRElgtDbWdqbRcUQaNA/exec',
+				url: 'https://script.google.com/macros/s/AKfycbydfsF1jVfvNQEMV1bWETmf3ISzil8JXMQK65TVSImjeIrfMqZyEdaMm8hfgcAGIqjemw/exec',
 				method: 'POST',
 				crossDomain: true,
 				data: JSON.stringify(rsvpData),
 				contentType: 'text/plain;charset=utf-8',
 				success: function (response) {
+					console.log('AJAX Response:', response);
 					var res = typeof response === 'string' ? JSON.parse(response) : response;
 					if (res && res.success) {
-						targetForm.fadeOut(400, function () {
+						$('#rsvp-form-wrapper').fadeOut(400, function () {
 							$('#rsvp-confirmation').fadeIn(400);
+
 							$('html, body').animate({
-								scrollTop: $('.rsvp-experience').offset().top - 50
+								scrollTop: $('.rsvp-container').offset().top - 50 // adjusted for container
 							}, 500);
 						});
 					} else {
-						errroTarget.html('<p style="color:red; margin-top:10px;">Submission failed. Please try again.</p>');
+						// Logic to handle Apps Script returning non-stringifiable error objects
+						var errorDetail = res && res.error;
+						var errorMsg = 'Submission failed.';
+
+						if (errorDetail) {
+							var errorStr = JSON.stringify(errorDetail);
+							if (errorStr === '{}' || errorStr === '[]') {
+								errorMsg = 'Error: Received empty error object from script. (Check "New Deployment" and Sheet permissions)';
+							} else {
+								errorMsg = 'Error: ' + errorStr;
+							}
+						}
+
+						console.error('RSVP logic failure:', res);
+						errroTarget.html('<p style="color:red; margin-top:10px;">' + errorMsg + '</p>');
+						_this.text(originalBtnText); // Reset text on logical failure
+						_this.prop('disabled', false);
 					}
 				},
 				error: function (xhr, status, error) {
-					console.error('RSVP Submission Error:', { status: status, error: error, response: xhr.responseText });
-					errroTarget.html('<p style="color:red; margin-top:10px;">Error submitting. Please check your connection.</p>');
-				},
-				complete: function () {
-					_this.text(originalBtnText);
+					console.error('RSVP AJAX Error:', { status: status, error: error, response: xhr.responseText });
+					errroTarget.html('<p style="color:red; margin-top:10px;">Error submitting (Connection issue). Please try again.</p>');
+					_this.text(originalBtnText); // Reset text on error
 					_this.prop('disabled', false);
 				}
 			});
 		}
 	});
 
-})(jQuery); 
+})(jQuery);

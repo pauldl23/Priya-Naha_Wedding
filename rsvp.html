@@ -1,0 +1,409 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Priya & Taha - RSVP</title>
+    <link rel="stylesheet" href="assets/css/allplugins.css">
+    <link rel="stylesheet" href="assets/style.css?v=3">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fdfaf5;
+            color: #5a4a3a;
+        }
+
+        h1,
+        h2 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .rsvp-container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 60px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            background: #C26A4A;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background: #a55a3f;
+        }
+
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: #8b7355;
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .conditional {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status"></div>
+    </div>
+
+    <div class="rsvp-container">
+        <!-- Wrapper to hide everything but the confirmation on success -->
+        <div id="rsvp-form-wrapper">
+            <h2 style="text-align: center; font-size: 42px; margin-bottom: 10px;">RSVP</h2>
+            <p style="text-align: center; color: #8b7355; margin-bottom: 50px;">Kindly respond by March 15, 2026</p>
+
+            <!-- ID for main.js binding -->
+            <form id="rsvp-experience-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <!-- mapped to guest_1_name -->
+                    <input type="text" name="guest_1_name" class="require" placeholder="Your Name" required
+                        data-error="Please enter your name.">
+                </div>
+
+                <div class="form-group">
+                    <label>Can you attend?</label>
+                    <div class="radio-group">
+                        <!-- mapped to attendance -->
+                        <div class="radio-item"><input type="radio" name="attendance" value="yes" id="yes"> <label
+                                for="yes" style="margin:0;">Yes</label></div>
+                        <div class="radio-item"><input type="radio" name="attendance" value="no" id="no"> <label
+                                for="no" style="margin:0;">No</label></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Do you have a plus one?</label>
+                    <div class="radio-group">
+                        <div class="radio-item"><input type="radio" name="plus_one" value="yes" id="p_yes"> <label
+                                for="p_yes" style="margin:0;">Yes</label></div>
+                        <div class="radio-item"><input type="radio" name="plus_one" value="no" id="p_no"> <label
+                                for="p_no" style="margin:0;">No</label></div>
+                    </div>
+                </div>
+
+                <div class="form-group conditional" id="plus-one-name-group">
+                    <label>If yes, what is their name?</label>
+                    <!-- mapped to guest_2_name -->
+                    <input type="text" name="guest_2_name" placeholder="Plus One's Name">
+                </div>
+
+                <div class="form-group conditional" id="plus-one-menu-group">
+                    <label>Plus one menu selection (Friday)</label>
+                    <select name="plus_one_diet_friday">
+                        <option value="Meat">Meat</option>
+                        <option value="Vegetarian">Vegetarian</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group conditional" id="plus-one-menu-friday-other-group" style="display: none;">
+                    <label>Please specify (Other - Plus One Friday)</label>
+                    <input type="text" name="plus_one_diet_friday_other" placeholder="Please specify...">
+                </div>
+
+                <div class="form-group conditional" id="plus-one-menu-sat-group">
+                    <label>Plus one menu selection (Saturday)</label>
+                    <select name="plus_one_diet_saturday">
+                        <option value="Meat">Meat</option>
+                        <option value="Vegetarian">Vegetarian</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group conditional" id="plus-one-menu-sat-other-group" style="display: none;">
+                    <label>Please specify (Other - Plus One Saturday)</label>
+                    <input type="text" name="plus_one_diet_saturday_other" placeholder="Please specify...">
+                </div>
+
+                <div class="form-group">
+                    <label>Will you be attending the dinner on Friday?</label>
+                    <div class="radio-group">
+                        <!-- Mapped to event_attendance for Google Sheet 'Events' column -->
+                        <div class="radio-item"><input type="checkbox" name="event_attendance"
+                                value="Friday Welcome Dinner" id="f_yes"> <label for="f_yes"
+                                style="margin:0;">Yes</label></div>
+                        <div class="radio-item"><input type="checkbox" name="event_attendance_dummy_no" id="f_no">
+                            <label for="f_no" style="margin:0;">No</label>
+                        </div>
+                    </div>
+                    <!-- Hidden Checkbox for Saturday Wedding -->
+                    <input type="checkbox" name="event_attendance" value="Saturday Wedding" checked
+                        style="display:none;">
+                </div>
+
+                <div class="form-group" id="friday-menu-container">
+                    <label>Menu selection (Friday)</label>
+                    <select name="dietary_friday">
+                        <option value="Meat">Meat</option>
+                        <option value="Vegetarian">Vegetarian</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group conditional" id="friday-menu-other-group">
+                    <label>Please specify (Other)</label>
+                    <input type="text" name="dietary_friday_other" placeholder="Please specify...">
+                </div>
+
+                <div class="form-group">
+                    <label>Menu selection (Saturday)</label>
+                    <!-- mapped to dietary_saturday -->
+                    <select name="dietary_saturday">
+                        <option value="Meat">Meat</option>
+                        <option value="Vegetarian">Vegetarian</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group conditional" id="menu-other-group">
+                    <label>Please specify (Other)</label>
+                    <input type="text" name="diet_details_extra" placeholder="Please specify...">
+                </div>
+
+                <div class="form-group">
+                    <label>Do you have any dietary restrictions? (Select all that apply)</label>
+                    <div class="checkbox-group" style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 10px;">
+                        <div class="checkbox-item" style="display: flex; align-items: center; gap: 8px;">
+                            <input type="checkbox" name="diet_details" value="None" id="diet_none" checked>
+                            <label for="diet_none" style="margin: 0; font-weight: 400; color: #666;">None</label>
+                        </div>
+                        <div class="checkbox-item" style="display: flex; align-items: center; gap: 8px;">
+                            <input type="checkbox" name="diet_details" value="Vegetarian" id="diet_veg">
+                            <label for="diet_veg" style="margin: 0; font-weight: 400; color: #666;">Vegetarian</label>
+                        </div>
+                        <div class="checkbox-item" style="display: flex; align-items: center; gap: 8px;">
+                            <input type="checkbox" name="diet_details" value="Vegan" id="diet_vegan">
+                            <label for="diet_vegan" style="margin: 0; font-weight: 400; color: #666;">Vegan</label>
+                        </div>
+                        <div class="checkbox-item" style="display: flex; align-items: center; gap: 8px;">
+                            <input type="checkbox" name="diet_details" value="Gluten-free" id="diet_gf">
+                            <label for="diet_gf" style="margin: 0; font-weight: 400; color: #666;">Gluten-free</label>
+                        </div>
+                        <div class="checkbox-item" style="display: flex; align-items: center; gap: 8px;">
+                            <input type="checkbox" name="diet_details" value="Dairy-free" id="diet_df">
+                            <label for="diet_df" style="margin: 0; font-weight: 400; color: #666;">Dairy-free</label>
+                        </div>
+                        <div class="checkbox-item" style="display: flex; align-items: center; gap: 8px;">
+                            <input type="checkbox" name="diet_details" value="Nut-free" id="diet_nf">
+                            <label for="diet_nf" style="margin: 0; font-weight: 400; color: #666;">Nut-free</label>
+                        </div>
+                        <div class="checkbox-item" style="display: flex; align-items: center; gap: 8px;">
+                            <input type="checkbox" name="diet_details" value="Other" id="diet_other">
+                            <label for="diet_other" style="margin: 0; font-weight: 400; color: #666;">Other</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group conditional" id="dietary-other-group">
+                    <label>Please specify (Other Dietary)</label>
+                    <input type="text" name="diet_details_other" placeholder="Please specify...">
+                </div>
+
+                <div class="form-group">
+                    <label>Do you know what hotel you’re staying at?</label>
+                    <!-- mapped to hotel_name -->
+                    <input type="text" name="hotel_name" placeholder="Hotel Name">
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="text" name="email" class="require" placeholder="Your Email" required
+                        data-error="Please enter your email.">
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="text" name="phone" placeholder="Your Phone Number">
+                </div>
+
+                <div class="form-group">
+                    <label>Will you be using the shuttle service?</label>
+                    <div class="radio-group">
+                        <div class="radio-item"><input type="radio" name="shuttle" value="yes" id="s_yes"> <label
+                                for="s_yes" style="margin:0;">Yes</label></div>
+                        <div class="radio-item"><input type="radio" name="shuttle" value="no" id="s_no"> <label
+                                for="s_no" style="margin:0;">No</label></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Song Request (What will get you on the dance floor?)</label>
+                    <input type="text" name="song" placeholder="Song Title & Artist">
+                </div>
+
+                <div class="form-group">
+                    <label>Any other notes or comments?</label>
+                    <textarea name="notes" placeholder="Your message here..."
+                        style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; min-height: 100px;"></textarea>
+                </div>
+
+                <div class="response"></div>
+
+                <!-- ID for main.js submission -->
+                <button type="button" id="rsvp-submit-btn" class="btn-submit">Submit RSVP</button>
+            </form>
+        </div> <!-- end rsvp-form-wrapper -->
+
+        <!-- Warm, Centered Confirmation Message -->
+        <div id="rsvp-confirmation"
+            style="display: none; text-align: center; margin-top: 20px; padding: 60px 40px; background: #fff; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.05);">
+            <div style="font-size: 50px; margin-bottom: 25px;">🥂</div>
+            <h2
+                style="font-family: 'Playfair Display', serif; color: #5a4a3a; font-size: 36px; margin-bottom: 20px; line-height: 1.4;">
+                Thank you so much for your RSVP</h2>
+            <p
+                style="font-family: 'Inter', sans-serif; font-size: 20px; line-height: 1.6; color: #8b7355; font-weight: 300;">
+                We are so excited to see you in Italy!</p>
+            <a href="index.html" class="back-home" style="margin-top: 40px; display: inline-block;">← Return Home</a>
+        </div>
+    </div> <!-- end rsvp-container -->
+
+
+    <script src="assets/js/vendor/jquery-3.2.1.min.js"></script>
+    <script src="assets/js/main.js?v=1.1"></script>
+    <script>
+        $(document).ready(function () {
+            // Re-implementing logic from previous form version
+            $('input[name="plus_one"]').change(function () {
+                if ($(this).val() === 'yes') {
+                    $('#plus-one-name-group').slideDown();
+                    $('#plus-one-menu-group').slideDown();
+                    $('#plus-one-menu-sat-group').slideDown();
+                } else {
+                    $('#plus-one-name-group').slideUp();
+                    $('#plus-one-menu-group').slideUp();
+                    $('#plus-one-menu-sat-group').slideUp();
+                }
+            });
+
+            // "Menu selection" other toggle (Saturday)
+            $('select[name="dietary_saturday"]').change(function () {
+                if ($(this).val() === 'Other') {
+                    $('#menu-other-group').slideDown();
+                } else {
+                    $('#menu-other-group').slideUp();
+                }
+            });
+
+            // "Menu selection" other toggle (Friday)
+            $('select[name="dietary_friday"]').change(function () {
+                if ($(this).val() === 'Other') {
+                    $('#friday-menu-other-group').slideDown();
+                } else {
+                    $('#friday-menu-other-group').slideUp();
+                }
+            });
+
+            // Plus One Menu "Other" toggles
+            $('select[name="plus_one_diet_friday"]').change(function () {
+                if ($(this).val() === 'Other') {
+                    $('#plus-one-menu-friday-other-group').slideDown();
+                } else {
+                    $('#plus-one-menu-friday-other-group').slideUp();
+                }
+            });
+
+            $('select[name="plus_one_diet_saturday"]').change(function () {
+                if ($(this).val() === 'Other') {
+                    $('#plus-one-menu-sat-other-group').slideDown();
+                } else {
+                    $('#plus-one-menu-sat-other-group').slideUp();
+                }
+            });
+
+            // "Dietary restrictions" other toggle
+            $('input[name="diet_details"]').change(function () {
+                if ($('#diet_other').is(':checked')) {
+                    $('#dietary-other-group').slideDown();
+                } else {
+                    $('#dietary-other-group').slideUp();
+                }
+
+                // If any other restriction is checked, uncheck "None"
+                if ($(this).val() !== 'None' && $(this).is(':checked')) {
+                    $('#diet_none').prop('checked', false);
+                }
+                // If "None" is checked, uncheck everything else
+                if ($(this).val() === 'None' && $(this).is(':checked')) {
+                    $('input[name="diet_details"]').not('#diet_none').prop('checked', false);
+                    $('#dietary-other-group').slideUp();
+                }
+            });
+
+            // Friday 'No' checkbox auto-unchecks 'Yes'
+            $('#f_no').change(function () {
+                if ($(this).is(':checked')) {
+                    $('#f_yes').prop('checked', false);
+                }
+            });
+            $('#f_yes').change(function () {
+                if ($(this).is(':checked')) {
+                    $('#f_no').prop('checked', false);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
